@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "@tuxounet-k2/k2-designer",
+  "private": true,
+  "workspaces": [
+    "ui/**",
+    "app/**"
+  ],
+  "scripts": {
+    "nuke": "rm -rf ./node_modules ./package-lock.json ./refs **/package-lock.json"
+  },
+  "devDependencies": {
+    "@tuxounet-k2/cli": "latest",
+    "lerna": "^6.4.1",
+    "jest": "^29.3.1"
+  },
+  "dependencies": {}
+}
