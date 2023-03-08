@@ -3,7 +3,7 @@ import * as trpcExpress from "@trpc/server/adapters/express";
 import { EventEmitter } from "events";
 import express from "express";
 import { z } from "zod";
-
+import cors from "cors";
 const createContext = ({
   req,
   res,
@@ -86,7 +86,7 @@ const appRouter = router({
   message: messageRouter,
   // or individual procedures
   hello: publicProcedure.input(z.string().nullish()).query(({ input, ctx }) => {
-    return `hello ${input ?? ctx.user?.name ?? "world"}`;
+    return { greetings: `hello ${input ?? ctx.user?.name ?? "world"}` };
   }),
   // or inline a router
   admin: router({
@@ -109,7 +109,11 @@ export type AppRouter = typeof appRouter;
 async function main() {
   // express implementation
   const app = express();
-
+  app.use(
+    cors({
+      methods: "GET",
+    })
+  );
   app.use((req, _res, next) => {
     // request logger
     console.log("⬅️ ", req.method, req.path, req.body ?? req.query);
