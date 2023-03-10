@@ -4,6 +4,7 @@ import { EventEmitter } from "events";
 import express from "express";
 import { z } from "zod";
 import cors from "cors";
+import path from "path";
 const createContext = ({
   req,
   res,
@@ -128,7 +129,10 @@ async function main() {
       createContext,
     })
   );
-  app.get("/", (_req, res) => res.send("hello"));
+  app.get("/", express.static(path.resolve(process.cwd(), "ui"),  {
+    index: "index.html",  
+  }) );
+
   app.listen(2021, () => {
     console.log("listening on port 2021");
   });

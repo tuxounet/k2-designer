@@ -2,6 +2,7 @@
   "name": "k2-designer",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "dist/server.js",
   "scripts": {
     "dev:server": "tsx watch src/server",
