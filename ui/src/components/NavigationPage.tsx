@@ -1,3 +1,4 @@
+import Box from "@mui/material/Box/Box";
 import React from "react";
 import Footer from "../pages/layout/Footer";
 import Header from "../pages/layout/Header";
@@ -6,11 +7,11 @@ interface NavigationPageProps {
 }
 function NavigationPage(props: NavigationPageProps) {
   return (
-    <div>
+    <Box sx={{ display: "flex" }}>
       <Header />
       {props.children}
       <Footer />
-    </div>
+    </Box>
   );
 }
 

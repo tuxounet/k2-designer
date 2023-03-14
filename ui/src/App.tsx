@@ -1,20 +1,32 @@
-import { useState } from "react";
+import React from "react";
 
-import "./App.css";
-
-import { createBrowserRouter, Link, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import IndexPage from "./pages/IndexPage";
 import AboutPage from "./pages/AboutPage";
+import EditPage from "./pages/EditPage";
+import ViewPage from "./pages/ViewPage";
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <IndexPage />,
+      element: <IndexPage />
+    },
+    {
+      path : "edit",
+      element: <EditPage/>
+    },
+    {
+      path : "view",
+      element: <ViewPage/>
     },
     {
       path: "about",
+      element: <AboutPage />,
+    },
+    {
+      path: "design",
       element: <AboutPage />,
     },
   ]);
