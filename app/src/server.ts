@@ -1,10 +1,26 @@
-import * as trpcExpress from "@trpc/server/adapters/express";
 import express from "express";
 import cors from "cors";
+import { front } from "./front";
+import { trpc } from "./trpc";
+import fs from "fs";
 import path from "path";
-import { createContext } from "./context";
-import { appRouter } from "./router";
+const port = process.env.PORT ?? "8080";
+const inventoryFolder = path.resolve(process.env.K2_INVENTORY ?? process.cwd());
 async function main() {
+  //check for inventory
+  if (!fs.existsSync(inventoryFolder)) {
+    console.error("🛑 inventory folder not found at " + inventoryFolder);
+    process.exit(1);
+    return;
+  }
+
+  const inventoryFile = path.join(inventoryFolder, "k2.inventory.yaml");
+  if (!fs.existsSync(inventoryFile)) {
+    console.error("🛑 inventory file not found at " + inventoryFile);
+    process.exit(1);
+    return;
+  }
+
   // express implementation
   const app = express();
   app.use(
@@ -19,22 +35,11 @@ async function main() {
     next();
   });
 
-  app.use(
-    "/trpc",
-    trpcExpress.createExpressMiddleware({
-      router: appRouter,
-      createContext,
-    })
-  );
-  app.get(
-    "/",
-    express.static(path.resolve(process.cwd(), "ui"), {
-      index: "index.html",
-    })
-  );
+  trpc(app);
+  front(app);
 
-  app.listen(2021, () => {
-    console.log("listening on port 2021");
+  app.listen(port, () => {
+    console.log("listening on port " + port);
   });
 }
 
