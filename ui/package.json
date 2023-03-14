@@ -1,6 +1,5 @@
 {
   "name": "k2-designer-ui",
- 
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -9,12 +8,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/material": "^5.11.13",
     "@tanstack/react-query": "^4.26.1",
     "@trpc/client": "^10.14.1",
     "@trpc/react-query": "^10.14.1",
     "@trpc/server": "^10.14.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.9.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

@@ -7,7 +7,8 @@
     "app/**"
   ],
   "scripts": {
-    "nuke": "rm -rf ./node_modules ./package-lock.json ./refs **/package-lock.json"
+    "nuke": "rm -rf ./node_modules ./package-lock.json ./refs **/package-lock.json",
+    "dev": "npx lerna run dev --parallel"
   },
   "devDependencies": {
     "@tuxounet-k2/cli": "latest",
