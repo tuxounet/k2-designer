@@ -35,7 +35,8 @@ function Header(props: HeaderProps) {
 
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
+const navigateTo = useNavigate()
+ 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState: any) => !prevState);
   };
@@ -50,7 +51,7 @@ function Header(props: HeaderProps) {
         {navItems.map((item) => (
           <ListItem key={item.to} disablePadding>
             <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={item.title} />
+              <ListItemText primary={item.title} onClick={()=> {navigateTo(item.to); handleDrawerToggle()}}/>
             </ListItemButton>
           </ListItem>
         ))}
@@ -60,8 +61,7 @@ function Header(props: HeaderProps) {
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
-const navigateTo = useNavigate()
- 
+
 
 
   return (

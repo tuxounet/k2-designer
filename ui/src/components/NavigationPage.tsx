@@ -7,7 +7,7 @@ interface NavigationPageProps {
 }
 function NavigationPage(props: NavigationPageProps) {
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", paddingTop : '4rem' }}>
       <Header />
       {props.children}
       <Footer />
