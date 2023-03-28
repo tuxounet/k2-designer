@@ -1,4 +1,4 @@
-import { inferAsyncReturnType, initTRPC, TRPCError } from "@trpc/server";
+import { inferAsyncReturnType, initTRPC } from "@trpc/server";
 import * as zod from "zod";
 import * as trpcExpress from "@trpc/server/adapters/express";
 
@@ -6,13 +6,6 @@ export const createContext = ({
   req,
   res,
 }: trpcExpress.CreateExpressContextOptions) => {
-  const getInventory = () => {
-    const inventory = (req as any)["inventory"];
-    if (!inventory) {
-      throw new TRPCError({ code: "PARSE_ERROR" });
-    }
-    return inventory;
-  };
   const getUser = () => {
     if (req.headers.authorization !== "secret") {
       return null;
@@ -26,7 +19,6 @@ export const createContext = ({
     req,
     res,
     user: getUser(),
-    inventory: getInventory(),
   };
 };
 export type Context = inferAsyncReturnType<typeof createContext>;
