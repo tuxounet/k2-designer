@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/server.js",
   "scripts": {
-    "dev:server": "K2_INVENTORY=/home/krux/repos/github.com/tuxounet/k2/samples/ tsx watch src/server",
+    "dev:server": "tsx watch src/server",
     "dev": "run-p dev:* --print-label",
     "type-check": "tsc",
     "build": "esbuild src/server.ts --bundle --packages=external --platform=node --format=cjs --outdir=dist --sourcemap",
